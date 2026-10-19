@@ -6,13 +6,9 @@
 
 # Activité 1-1 : Première connexion Client/Serveur
 
-## Étape 1 : Vérification de Git et de Java
-
-![git --version](images/git-version.png)
+## Vérification de Git et de Java
 
 Description : la commande `git --version` affiche la version de Git installée, ce qui confirme que Git est bien installé.
-
-![java -version](images/java-version.png)
 
 Description : Java 8 ne reconnaît pas `--version`, j'ai donc utilisé `java -version`. Java 1.8.0_471 est installé.
 
