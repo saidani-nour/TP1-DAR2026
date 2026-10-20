@@ -132,3 +132,35 @@ public class Client {
 ![x = 0](images/etape2-zero.png)
 
 **Interprétation :** pour x = 7, le serveur renvoie 35, et pour x = 0 il renvoie 0 : ces résultats sont corrects. Pour x =
+
+
+# Activité 1-3 : Amélioration du service de calculatrice
+
+## Étape 1 : Connexion Client/Serveur avec l'adresse IP réelle
+
+### Adresse IP de la machine
+![ipconfig](images/ipconfig.png)
+
+La commande `ipconfig` donne l'adresse IPv4 de la machine : **192.168.1.10**. Cette adresse est utilisée à la place de `localhost`.
+
+### Code du serveur
+![Code serveur](images/code-serveur1-3etape1.png)
+
+### Code du client
+![Code client](images/code-client1-3etape1.png)
+
+
+### Résultat côté serveur
+![Console serveur](images/serveur-reseau.png)
+
+### Résultat côté client
+![Console client](images/client-reseau.png)
+
+### Interprétation
+- Côté serveur, `InetAddress.getByName` transforme l'adresse IP en objet adresse, et `InetSocketAddress` regroupe cette adresse et le port 1234. La méthode `bind()` lie le `ServerSocket` à cette adresse : le serveur écoute sur l'adresse IP réelle de la machine et non plus sur `localhost`.
+- Côté client, `localhost` est remplacé par l'adresse IP du serveur, avec le même port, grâce à `InetSocketAddress` et à la méthode `connect()` (délai maximal de 5 secondes).
+- La console du serveur affiche « un client est connecté » suivi de l'adresse IP du client : la connexion TCP est établie.
+- Les valeurs 7 et -4 donnent 35 et -20, et la saisie de 0 ferme proprement les deux applications.
+
+### Remarque
+Faute de deuxième machine disponible, le test a été réalisé sur une seule machine, avec l'adresse IP réelle du réseau local et non `localhost`. Pour un test sur deux machines distinctes du même réseau, il suffit d'exécuter le client sur une autre machine en mettant l'adresse IP du serveur dans `SERVER_IP`, sans autre modification du code.
